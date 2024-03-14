@@ -11,8 +11,7 @@
     "eslint": "^7 || ^8"
   },
   "scripts": {
-    "lint:check": "eslint --ext ts --report-unused-disable-directives .",
-    "test": "jest"
+    "lint:check": "eslint --ext ts --report-unused-disable-directives ."
   },
   "homepage": "https://github.com/janlibal/boilerplate-backend-nodejs-api-v4",
   "author": {
@@ -55,6 +54,7 @@
     "ts-jest": "^29.1.2"
   },
   "dependencies": {
+    "cross-env": "^7.0.3",
     "dotenv-extended": "^2.9.0",
     "dotenv-parse-variables": "^2.0.0",
     "pino": "^8.19.0"
