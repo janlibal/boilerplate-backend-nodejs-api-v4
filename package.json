@@ -7,6 +7,9 @@
     "npm": ">=8.13.2",
     "node": ">=20.10.0"
   },
+  "peerDependencies": {
+    "eslint": "^7 || ^8"
+  },
   "scripts": {
     "test": "jest"
   },
@@ -36,8 +39,15 @@
     "boilerplate"
   ],
   "devDependencies": {
+    "@strv/eslint-config-base": "^3.5.0",
+    "@strv/eslint-config-node": "^3.3.2",
+    "@strv/eslint-config-typescript": "^4.1.2",
     "@types/dotenv-parse-variables": "^2.0.3",
     "@types/jest": "^29.5.12",
+    "@typescript-eslint/eslint-plugin": "^6.17.0",
+    "@typescript-eslint/parser": "^6.17.0",
+    "eslint-import-resolver-typescript": "^3.6.1",
+    "eslint-plugin-node": "^11.1.0",
     "jest": "^29.7.0",
     "nodemon": "^3.1.0",
     "supertest": "^6.3.4",
@@ -46,5 +56,13 @@
   "dependencies": {
     "dotenv-extended": "^2.9.0",
     "dotenv-parse-variables": "^2.0.0"
+  },
+  "eslintConfig": {
+    "extends": [
+      "@strv/node/v20",
+      "@strv/node/optional",
+      "@strv/node/style",
+      "@strv/mocha"
+    ]
   }
 }
