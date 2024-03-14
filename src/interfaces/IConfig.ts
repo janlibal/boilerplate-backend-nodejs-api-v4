@@ -4,4 +4,5 @@ export interface IConfig {
     logPath: string
     pinoMinLevel: string
     pinoEnabled: boolean
+    environment: string
 }

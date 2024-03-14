@@ -19,6 +19,7 @@ const config: IConfig = {
     appName: pack.name as string,
     nodeVer: pack.engines.node as string,
     pinoMinLevel: parsedEnv.PINO_MIN_LEVEL as string,
+    environment: parsedEnv.ENVIRONMENT as string,
     pinoEnabled: parsedEnv.PINO_ENABLED as boolean,
     logPath: parsedEnv.LOGS as string,
 }
