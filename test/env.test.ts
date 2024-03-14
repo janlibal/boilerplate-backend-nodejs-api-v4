@@ -1,4 +1,4 @@
-import config from "../src/config"
+import config from "../../src/config"
 
 test('.env | App Definition', async () => {
     expect(!!config.appName).toBeDefined()
