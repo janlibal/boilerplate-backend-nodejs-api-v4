@@ -11,7 +11,8 @@
     "eslint": "^7 || ^8"
   },
   "scripts": {
-    "lint:check": "eslint --ext ts --report-unused-disable-directives ."
+    "lint:check": "eslint --ext ts --report-unused-disable-directives .",
+    "test": "cross-env ENV_FILE=./src/config/env/.env.test jest --detectOpenHandles"
   },
   "homepage": "https://github.com/janlibal/boilerplate-backend-nodejs-api-v4",
   "author": {
