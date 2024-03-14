@@ -1,0 +1,38 @@
+{
+  "name": "boilerplate-v4",
+  "version": "4.0.0",
+  "description": "Boilerplate Node.js API",
+  "main": "index.js",
+  "engines": {
+    "npm": ">=8.13.2",
+    "node": ">=20.10.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "homepage": "https://github.com/janlibal/boilerplate-backend-nodejs-api-v4",
+  "author": {
+    "name": "Jan Libal",
+    "email": "jan.libal@yahoo.com"
+  },
+  "contributors": [
+    {
+      "name": "Jan Libal",
+      "email": "jan.libal@yahoo.com"
+    }
+  ],
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/janlibal/boilerplate-backend-nodejs-api-v4.git"
+  },
+  "keywords": [
+    "koa",
+    "koa2",
+    "rest",
+    "restful",
+    "api",
+    "koa-boilerplate",
+    "boilerplate"
+  ]
+}
