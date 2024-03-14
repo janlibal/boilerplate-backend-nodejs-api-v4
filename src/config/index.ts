@@ -18,10 +18,40 @@ const parsedEnv = dotenvParseVariables(env)
 const config: IConfig = {
     appName: pack.name as string,
     nodeVer: pack.engines.node as string,
+    debugLogging: parsedEnv.DEBUG_LOGGING as boolean,
     pinoMinLevel: parsedEnv.PINO_MIN_LEVEL as string,
-    environment: parsedEnv.ENVIRONMENT as string,
     pinoEnabled: parsedEnv.PINO_ENABLED as boolean,
-    logPath: parsedEnv.LOGS as string,
+    server: {
+        logPath: parsedEnv.LOGS as string,
+        port: parsedEnv.PORT as string,
+        environment: parsedEnv.ENVIRONMENT as string,
+        bodyParser: {
+            patchKoa: parsedEnv.PATCH_KOA as boolean,
+            urlencoded: parsedEnv.URL_ENCODED as boolean,
+            text: parsedEnv.TEXT as boolean,
+            json: parsedEnv.JSON as boolean,
+            multipart: parsedEnv.MULTIPART as boolean,
+          },
+        cors: {
+            origin: parsedEnv.ORIGIN as string,
+            exposeHeaders: parsedEnv.EXPOSE_HEADERS as [],
+            allowedMethods: parsedEnv.EXPOSE_HEADERS as [],
+            allowedHeaders: parsedEnv.EXPOSE_HEADERS as []
+        }
+    },
+    auth: {
+        secret: parsedEnv.AUTH_SECRET as string,
+        saltRounds: parsedEnv.AUTH_SALT_ROUNDS as string,
+        createOptions: {
+            expiresIn: parsedEnv.AUTH_EXPIRES_IN as any,
+            algorithm: parsedEnv.AUTH_ALGORITHM as any,
+            issuer: parsedEnv.AUTH_ISSUER as string,
+        }
+    },
+    database: {
+        connection: parsedEnv.CONNECTION as any,
+    }
+    
 }
 
 export default config
