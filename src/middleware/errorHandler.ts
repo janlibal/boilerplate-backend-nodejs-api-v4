@@ -10,7 +10,7 @@ async function errorHandler(ctx: IContext, next: () => Promise<any>) {
 
         const stack = error.stack ? error.stack.split('\n') : error.stack
         
-        const isDevelopment = ['development', 'test', 'staging', 'production'].includes(config.environment)
+        const isDevelopment = ['development', 'test', 'staging', 'production'].includes(config.server.environment)
 
         ctx.status = error.status || 500
         ctx.body = { 

@@ -5,7 +5,7 @@ const transport = pino.transport({
   targets: [
     {
       target: 'pino/file',
-      options: { destination: config.logPath },
+      options: { destination: config.server.logPath },
     },
     {
       target: 'pino-pretty',
