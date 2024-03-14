@@ -28,6 +28,9 @@ app.use(cors({
 app.use(
     koaSwagger({
       routePrefix: '/swagger',
+      swaggerOptions: {
+        spec: JSON.parse(fs.readFileSync('./src/spec/swagger.json', 'utf8')),
+      },
     }),
   )
 app.use(
