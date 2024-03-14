@@ -8,7 +8,7 @@
     "node": ">=20.10.0"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "homepage": "https://github.com/janlibal/boilerplate-backend-nodejs-api-v4",
   "author": {
