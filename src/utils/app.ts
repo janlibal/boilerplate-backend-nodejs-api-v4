@@ -6,6 +6,8 @@ import koaCompress from 'koa-compress'
 import koaHelmet  from 'koa-helmet'
 import cors from '@koa/cors'
 import koaLogger from 'koa-logger'
+import { koaSwagger } from 'koa2-swagger-ui'
+import fs from 'fs'
 import errorHandler from '../middleware/errorHandler'
 import config from '../config'
 import router from '../routes'
@@ -23,7 +25,11 @@ app.use(cors({
   allowHeaders: config.server.cors.allowedHeaders,
   exposeHeaders: config.server.cors.exposeHeaders
 }))
-
+app.use(
+    koaSwagger({
+      routePrefix: '/swagger',
+    }),
+  )
 app.use(
   bodyParser({
     enableTypes: ["json"],
