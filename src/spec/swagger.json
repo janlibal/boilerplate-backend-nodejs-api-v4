@@ -14,5 +14,48 @@
         }
     },
     "host": "localhost:3000",
-    "basePath": "/api/v1"
+    "basePath": "",
+    "paths": {
+        "/": {
+            "get": {
+                "tags": [
+                    "getApiInfo"
+                ],
+                "summary": "Gets API info",
+                "description": "Returns name, version, desc, nnodever, hostname and platform.",
+                "operationId": "getApiInfo",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json",
+                    "application/xml"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                }
+            }
+        }
+
+    },
+    "definitions": {
+        "ApiResponse": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "type": {
+                    "type": "string"
+                },
+                "message": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+    
 }
