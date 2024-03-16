@@ -44,7 +44,11 @@ services:
       - POSTGRES_USER=root
       - POSTGRES_PASSWORD=root
       - POSTGRES_DB=boilerplate
-      - POSTGRES_MULTIPLE_DATABASES="boilerplate-v4-dev","boilerplate-v4-prod","boilerplate-v4","boilerplate-v4-test"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
     ports:
       # Standard port for PostgreSQL databases
       - "5432:5432"
