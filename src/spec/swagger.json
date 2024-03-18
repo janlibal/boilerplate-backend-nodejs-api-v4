@@ -54,7 +54,7 @@
                     {
                         "in": "body",
                         "name": "body",
-                        "description": "Email for login",
+                        "description": "Login",
                         "required": true,
                         "schema": {
                             "$ref": "#/definitions/Login"
@@ -89,6 +89,61 @@
                 }
                 
             }
+        },
+        "/api/v1/user": {
+            "post": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "Registers and logs in new user",
+                "description": "Registers a new user and logs them in",
+                "operationId": "registerUser",
+                "produces": [
+                    "application/json",
+                    "application/xml"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Register and login",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Register"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "headers": {
+                            "X-Expires-After": {
+                                "type": "string",
+                                "format": "date-time",
+                                "description": "date in UTC when token expires"
+                            },
+                            "X-Rate-Limit": {
+                                "type": "integer",
+                                "format": "int32",
+                                "description": "calls per hour allowed by the user"
+                            }
+                        },
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "401":{
+                        "description": "Invalid email or password"
+                    },
+                    "400": {
+                        "description": "Invalid username/password supplied"
+                    },
+                    "409":{
+                        "description": "User already registered"
+                    }
+                }
+                
+            }
         }
     },
     "definitions": {
@@ -110,6 +165,23 @@
         "Login": {
             "type": "object",
             "properties": {
+                "email": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                }
+            },
+            "xml": {
+                "name": "Login"
+            }
+        },
+        "Register": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
                 "email": {
                     "type": "string"
                 },
