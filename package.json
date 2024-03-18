@@ -45,6 +45,7 @@
     "boilerplate"
   ],
   "devDependencies": {
+    "@ngneat/falso": "^7.2.0",
     "@strv/eslint-config-base": "^3.5.0",
     "@strv/eslint-config-node": "^3.3.2",
     "@strv/eslint-config-typescript": "^4.1.2",
