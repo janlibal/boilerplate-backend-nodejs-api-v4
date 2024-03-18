@@ -26,7 +26,6 @@ export async function signIn(ctx:IContext){
 
     const input:IUser = {
         email: ctx.request.body.email,
-        name: ctx.request.body.name,
         password: ctx.request.body.password
     }
 

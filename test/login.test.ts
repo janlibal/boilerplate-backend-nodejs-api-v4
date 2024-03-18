@@ -1,6 +1,7 @@
 import supertest from 'supertest'
 import app from '../src/utils/app'
 import { knex } from '../src/database'
+import { createDummy } from '../src/utils/helpers'
 
 const server = app.listen()
 
@@ -8,13 +9,16 @@ afterAll(async () => {
     await server.close()
 })
 
+let dummy: any
+
 describe('POST /api/v1/login', () => {
 
     beforeEach(async() => {
         return await knex.migrate.rollback()
         .then(async () => {return await knex.migrate.latest()})
+        .then(async () => { dummy = await createDummy() })
       })
-  
+    
       afterEach(async () => {
         return await knex.migrate.rollback()
       })
@@ -22,7 +26,7 @@ describe('POST /api/v1/login', () => {
       it('10. LOGIN: Should login user', async () => {
         const request = supertest(server)
         const userData = {
-          email: 'joe.doe@joedoe.com',
+          email: await dummy.email, 
           password: 'Password123!'
         }
         const res = await request
@@ -30,7 +34,7 @@ describe('POST /api/v1/login', () => {
         .send(userData)
         .expect('Content-Type', /json/)
         .expect(200)
-  
+
         const info = res.body
         const status = res.status
         expect(status).toBe(200)
