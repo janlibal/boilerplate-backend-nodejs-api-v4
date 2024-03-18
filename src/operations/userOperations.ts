@@ -24,17 +24,12 @@ async function create(input: IUser) {
     let createdUser: any
     createdUser = await userRepository.saveUser(data)
 
-    const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJkZDU0M2E0YS05ZTkwLTQ1MjAtYTljNS1mMTE2YjgyMTgxOTIiLCJpYXQiOjE3MDk4MTk1MjIsImV4cCI6MTcwOTgyOTUyMiwiaXNzIjoiQ09NLkpBTkxJQkFMLmRldmVsb3BtZW50In0.12jmcKAa20PgC_l4DMYRGBdO8lzbWL1cj2xTvp7lhOk'
-    
-    const fakeUser = {
-        email: 'joe.doe@joedoe.com',
-        token
-    }
+    const token = await crypto.generateAccessToken(createdUser.id)
        
-    logger.info({email: fakeUser.email, token: token}, 'create user finished')
+    logger.info({email: createdUser.email, token: token}, 'create user finished')
 
     return {
-        email: fakeUser.email,
+        email: createdUser.email,
         token
     }
     
