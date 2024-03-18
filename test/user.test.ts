@@ -208,4 +208,34 @@ describe('POST /api/v1/user', () => {
       
     })
 
+    it('9. REGISTER: User already exists', async () => {
+      const request = supertest(server)
+      const userData = {
+        name: 'Joe Doe',
+        email: 'joe.doe@joedoe.com', //testUser.email,
+        password: 'Password.123!'
+      }
+ 
+      const createUser = await request
+      .post(`/api/v1/user`)
+      .send(userData)
+  
+      const res = await request
+      .post(`/api/v1/user`)
+      .send(userData)
+      .expect('Content-Type', /json/)
+      .expect(409)
+  
+      const info = res.body
+      const status = res.status
+      expect(status).toBe(409)
+      expect(info.status).toBe(409)
+      expect(info.requestId).toMatch(/^[0-9a-f]{8}-[0-9a-f]{4}-[0-5][0-9a-f]{3}-[089ab][0-9a-f]{3}-[0-9a-f]{12}$/i)
+      expect(info.type).toMatch('RESOURCE_ALREADY_EXISTS')
+      expect(info.message).toMatch('User already registered')
+      expect(info.stack).toMatch(/ResourceAlreadyExists: User already registered/i)
+      
+      
+    })
+
 })
