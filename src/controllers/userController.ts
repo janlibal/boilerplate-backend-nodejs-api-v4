@@ -1,9 +1,9 @@
-import { Context } from "koa"
+import { Context } from "koa";
 
 
 
-export async function signUp(ctx: Context){
+export async function signUp(ctx:Context){
 
-    ctx.status = 200
+    ctx.status = 201
     
 }

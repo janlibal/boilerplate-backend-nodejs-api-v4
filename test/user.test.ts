@@ -21,10 +21,22 @@ describe('POST /api/v1/user', () => {
       return await knex.migrate.rollback()
     })
 
-    it('Should return 200 to make sure the route works', async () => {
+    it('SignUp test', async () => {
       const request = supertest(server)
+      const userData = {
+        name: 'Joe Doe',
+        email: 'joe.doe@joedoe.com',
+        password: 'Password.123!'
+      }
       const res = await request
       .post(`/api/v1/user`)
-      .expect(200)
-  })
+      .send(userData)
+      .expect('Content-Type', /json/)
+      .expect(201)
+      const info = res.body
+      const status = res.status
+      expect(status).toBe(201)
+      expect(info.email).toMatch(/^\S+@\S+\.\S+$/)
+      expect(info.token).toMatch(/^[A-Za-z0-9-_=]+\.[A-Za-z0-9-_=]+\.?[A-Za-z0-9-_.+/=]*$/)
+    })
 })
