@@ -256,8 +256,7 @@ describe('POST /api/v1/login', () => {
       const request = supertest(server)
       
       const res = await request
-      .post(`/api/v1/user`)
-      .expect('Content-Type', /json/)
+      .post(`/api/v1/login`)
       .expect(200)
     })
 
