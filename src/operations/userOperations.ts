@@ -1,5 +1,6 @@
 import { IUser } from "../interfaces/IUser"
 import logger from "../utils/logger"
+import crypto from "../utils/crypto"
 
 async function create(input: IUser) {
     
@@ -8,7 +9,7 @@ async function create(input: IUser) {
     const data = {
       email: input.email,
       name: input.name,
-      password: input.password
+      password: await crypto.hashPassword(input.password),
   }
 
     const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJkZDU0M2E0YS05ZTkwLTQ1MjAtYTljNS1mMTE2YjgyMTgxOTIiLCJpYXQiOjE3MDk4MTk1MjIsImV4cCI6MTcwOTgyOTUyMiwiaXNzIjoiQ09NLkpBTkxJQkFMLmRldmVsb3BtZW50In0.12jmcKAa20PgC_l4DMYRGBdO8lzbWL1cj2xTvp7lhOk'
