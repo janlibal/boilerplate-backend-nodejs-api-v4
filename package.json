@@ -14,6 +14,8 @@
     "dev": "cross-env ENV_FILE=./src/config/env/.env.dev nodemon",
     "staging": "cross-env ENV_FILE=./src/config/env/.env.staging ts-node-dev --poll --respawn --transpile-only ./src/index.ts",
     "migration:make": "knex migrate:make --knexfile ./src/database/knexfile.ts",
+    "db-dev:migrate": "knex migrate:latest --env development --knexfile ./src/database/knexfile.ts",
+    "db-test:migrate": "knex migrate:latest --env test --knexfile ./src/database/knexfile.ts",
     "lint:check": "eslint --ext ts --report-unused-disable-directives .",
     "test": "cross-env ENV_FILE=./src/config/env/.env.test jest --detectOpenHandles"
   },
