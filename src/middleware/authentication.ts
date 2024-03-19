@@ -3,7 +3,6 @@ import { IContext } from "../interfaces/IContext"
 import logger from "../utils/logger"
 import * as errors from '../utils/errors'
 
-
 async function parseHeader(hdrValue:string) {
 
     if (!hdrValue || typeof hdrValue !== 'string') {
@@ -21,11 +20,17 @@ async function parseHeader(hdrValue:string) {
   }
 
 
-
-async function getAuthPayload(token:string) {
+async function getAuthPayload(authorization:string) {
   
-    if (!token) {
-      return null
+    const parsedHeader = await parseHeader(authorization)
+
+    if (!parsedHeader
+        || !parsedHeader.value
+        || !parsedHeader.scheme
+        //|| parsedHeader.scheme.toLowerCase() !== 'jwt'
+        || parsedHeader.value.toLowerCase() !== 'jwt' 
+    ) {
+        return null
     }
         
     return true
