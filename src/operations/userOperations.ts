@@ -81,6 +81,12 @@ async function verifyTokenPayload(token:string) {
     throw new errors.Unauthorized('Invalid token')
   }
 
+  const userId = jwtPayload.userId
+  const user = await userRepository.findById(userId)
+  if (!user) {
+    throw new errors.Unauthorized('Invalid user')
+  }
+
   logger.info('verifyTokenPayload finished')
 
   return {
