@@ -13,6 +13,7 @@
   "scripts": {
     "dev": "cross-env ENV_FILE=./src/config/env/.env.dev nodemon",
     "staging": "cross-env ENV_FILE=./src/config/env/.env.staging ts-node-dev --poll --respawn --transpile-only ./src/index.ts",
+    "build": "npx tsc",
     "migration:make": "knex migrate:make --knexfile ./src/database/knexfile.ts",
     "db-dev:migrate": "knex migrate:latest --env development --knexfile ./src/database/knexfile.ts",
     "db-test:migrate": "knex migrate:latest --env test --knexfile ./src/database/knexfile.ts",
