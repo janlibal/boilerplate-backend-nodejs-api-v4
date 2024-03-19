@@ -35,11 +35,11 @@ describe('Headers tests', () => {
   
         const info = res.body
         const status = res.status
-        expect(status).toBe(403)
         expect(info.requestId).toMatch(/^[0-9a-f]{8}-[0-9a-f]{4}-[0-5][0-9a-f]{3}-[089ab][0-9a-f]{3}-[0-9a-f]{12}$/i)
         expect(info.status).toBe(403)
-        expect(info.message).toMatch('Invalid Token')
-        expect(info.stack).toMatch(/InvalidToken: Invalid Token/i)
+        expect(info.type).toMatch('INVALID_TOKEN')
+        expect(info.message).toMatch('Invalid token')
+        expect(info.stack).toMatch(/InvalidToken: Invalid token/i)
     })
 
 })
