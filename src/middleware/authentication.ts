@@ -57,7 +57,7 @@ export async function authenticate(ctx:IContext, next:Next) {
 
     const data = await getAuthPayload(jwtToken)
     if (!data) {
-        throw new errors.InvalidToken()
+      throw new errors.InvalidToken('Invalid token')
     }
 
     if (ctx.response && data.loginTimeout) {

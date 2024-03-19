@@ -111,8 +111,6 @@ export class RequestValidationErrorsOld extends BadRequest {
   }
 }
 
-
-
 export class InvalidRequestBodyFormat extends Forbidden {
   name = 'InvalidRequestBodyFormat'
   constructor() {
@@ -120,10 +118,9 @@ export class InvalidRequestBodyFormat extends Forbidden {
   }
 }
 
-
 export class InvalidToken extends Forbidden {
   name = 'InvalidToken'
-  constructor() {
-      super('Invalid Token')
-  }
+  type = 'INVALID_TOKEN'
+  status = 403
+  expose = false
 }
