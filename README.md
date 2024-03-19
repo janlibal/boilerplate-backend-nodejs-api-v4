@@ -1,8 +1,8 @@
-# Boilerplate API III.
+# Boilerplate API IV.
 
 ## Introduction
 
-Boilerplate API is a simple RESTful API boilerplate project built using Node.Js, Koa, TypeScript and Objection as ORM for a Postres database. As middleware is used JWT, CORS, Pino logger.
+Boilerplate API is a simple RESTful API boilerplate project built using Node.Js, Koa, Swagger, TypeScript and Objection as ORM for a Postres database. As middleware is used JWT, CORS, Pino logger.
 
 ### What it contains
 
@@ -11,6 +11,7 @@ Boilerplate API is a simple RESTful API boilerplate project built using Node.Js,
 * TypeScript 
 * Koa framework
 * Postgres (database) with objection
+* Swagger (documentation)
 * Pino (logger)
 * Jest (integration tests)
 
@@ -19,6 +20,7 @@ Boilerplate API is a simple RESTful API boilerplate project built using Node.Js,
 * GET / – gets API info
 * POST /api/v1/user – creates new user
 * POST /api/v1/login – login (returns access token to access protected routes)
+* POST /api/v1/address – saves new contact in Forestore database
 
 ## Setup
 
@@ -66,7 +68,7 @@ Boilerplate API is a simple RESTful API boilerplate project built using Node.Js,
 * Database connection functions in /src/database
 * Schemas for validation are in /src/validations
 * Custom interfaces for TS types are in /src/interfaces
-* Tests are in /tests folder
+* Tests are in /test folder
 
 ### API Design
 
