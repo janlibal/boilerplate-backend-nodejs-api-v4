@@ -31,4 +31,12 @@ export default pino({
     level: config.pinoMinLevel,
     enabled: config.pinoEnabled,
     timestamp: () => `,"timestamp":"${new Date(Date.now()).toISOString()}"`,
+    redact: {
+      paths: [
+        'user.id',
+        'user.name',
+        'user.password',
+      ],
+      remove: true,
+    },
 }, transport)
