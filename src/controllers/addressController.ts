@@ -2,6 +2,7 @@ import schema from '../validations/schemas/addressSchema'
 import validate from '../validations'
 import { IContext } from "../interfaces/IContext"
 import { IContact } from '../interfaces/IContact'
+import addressOperations from '../operations/addressOperations'
 
 export async function address(ctx:IContext){
 
@@ -24,16 +25,9 @@ export async function address(ctx:IContext){
         userId: userId
     }
 
-    const _writeTime = {
-        _seconds: 10000,
-        _nanoseconds: 10000
-    }   
-
-    const data = {
-        _writeTime
-    }
+    const address = await addressOperations.create(input)
 
     ctx.status = 200
-    ctx.body = data
+    ctx.body = address
 
 }
