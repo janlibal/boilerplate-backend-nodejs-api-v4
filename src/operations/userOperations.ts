@@ -83,7 +83,10 @@ async function verifyTokenPayload(token:string) {
 
   logger.info('verifyTokenPayload finished')
 
-  return true
+  return {
+    user,
+    loginTimeout: jwtPayload.exp * 1000,
+  }
 }
 
 export default { 
