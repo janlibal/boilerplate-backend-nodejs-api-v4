@@ -1,4 +1,5 @@
 import { IContact, IContactData, IUserData } from "../interfaces/IContact"
+import addressRepository from "../repositories/addressRepository"
 import logger from "../utils/logger"
 
 async function create(input: IContact) {
@@ -19,14 +20,7 @@ async function create(input: IContact) {
         userId: input.userId.toString(),
     }
 
-    const _writeTime = {
-        _seconds: 10000,
-        _nanoseconds: 10000
-    }   
-
-    const contact = {
-        _writeTime
-    }
+    const contact = await addressRepository.save(contactData, userData)
 
     logger.info('create address finished')
     
