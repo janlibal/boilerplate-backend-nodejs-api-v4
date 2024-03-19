@@ -31,6 +31,13 @@ export class UnauthorizedError extends AppError {
   }
 }
 
+export class BadHeader extends Error {
+  name = 'BadHeader'
+  type = 'BAD_HEADER'
+  status = 401
+  expose = false
+}
+
 export class Unauthorized extends Error {
   name = 'Unauthorized'
   type = 'UNAUTHORIZED'
