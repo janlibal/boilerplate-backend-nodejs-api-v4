@@ -73,6 +73,9 @@ async function create(input: IUser) {
 async function verifyTokenPayload(token:string) {
   logger.info({ token }, 'verifyTokenPayload started')
   
+  let jwtPayload:any
+  jwtPayload = await crypto.verifyToken(token)
+  
   logger.info('verifyTokenPayload finished')
 
   return true
