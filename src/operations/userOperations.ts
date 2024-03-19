@@ -69,7 +69,17 @@ async function create(input: IUser) {
     }
     
 }
+
+async function verifyTokenPayload(token:string) {
+  logger.info({ token }, 'verifyTokenPayload started')
+  
+  logger.info('verifyTokenPayload finished')
+
+  return true
+}
+
 export default { 
     create,
-    login
+    login,
+    verifyTokenPayload
 }
