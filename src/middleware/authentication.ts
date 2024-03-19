@@ -2,6 +2,8 @@ import { Next } from "koa"
 import { IContext } from "../interfaces/IContext"
 import logger from "../utils/logger"
 import * as errors from '../utils/errors'
+import validate from "../validations"
+import schema from '../validations/schemas/userSchema'
 
 async function parseHeader(hdrValue:string) {
 
@@ -25,13 +27,17 @@ async function getAuthPayload(authorization:string) {
     const parsedHeader = await parseHeader(authorization)
 
     if (!parsedHeader
-        || !parsedHeader.value
-        || !parsedHeader.scheme
-        //|| parsedHeader.scheme.toLowerCase() !== 'jwt'
-        || parsedHeader.value.toLowerCase() !== 'jwt' 
+      || !parsedHeader.value
+      || !parsedHeader.scheme
+      //|| parsedHeader.scheme.toLowerCase() !== 'jwt'
+      || parsedHeader.value.toLowerCase() !== 'jwt' 
     ) {
-        return null
+      return null
     }
+    
+    const token = parsedHeader.scheme.replace('jwt ', '')
+  
+    validate(schema.jwtToken, token)
         
     return true
      
