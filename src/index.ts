@@ -18,7 +18,7 @@ export async function server(){
     server = createServer
     logger.info(`Server is listening on ${srvPort}. `)
 
-  } catch (err:any) {
+  } catch (err:unknown) {
 
     process.exitCode = 1
     logger.fatal('FATAL ERROR WHILE STARTING SERVER!')
