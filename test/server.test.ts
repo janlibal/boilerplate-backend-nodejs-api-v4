@@ -1,6 +1,6 @@
 import supertest from 'supertest'
 import os from 'os'
-import app from '../src/utils/app'
+import {app} from '../src/utils/app'
 import pkg from '../package.json'
 
 

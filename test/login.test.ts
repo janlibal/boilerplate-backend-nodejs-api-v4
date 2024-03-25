@@ -1,5 +1,5 @@
 import supertest from 'supertest'
-import app from '../src/utils/app'
+import {app} from '../src/utils/app'
 import { knex } from '../src/database'
 import { createDummy } from '../src/utils/helpers'
 

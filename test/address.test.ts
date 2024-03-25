@@ -1,10 +1,11 @@
 import supertest from 'supertest'
-import app from '../src/utils/app'
+import {app} from '../src/utils/app'
 import { knex } from '../src/database'
 import { createDummyAndAuthorize } from '../src/utils/helpers'
 
 
 const server = app.listen()
+
 
 let usr: any
 

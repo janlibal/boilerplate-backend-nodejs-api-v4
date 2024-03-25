@@ -1,5 +1,5 @@
 import supertest from 'supertest'
-import app from '../src/utils/app'
+import {app} from '../src/utils/app'
 
 const server = app.listen()
 
