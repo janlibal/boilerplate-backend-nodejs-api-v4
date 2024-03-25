@@ -1,4 +1,5 @@
 import Koa from 'koa'
+import http from "http"
 import bodyParser from 'koa-bodyparser'
 import koaBody from 'koa-body'
 import requestId from 'koa-requestid'
@@ -11,9 +12,14 @@ import fs from 'fs'
 import errorHandler from '../middleware/errorHandler'
 import config from '../config'
 import router from '../routes'
+import shutdown from '../middleware/shutdown'
+import pino from 'pino'
 
 const app = new Koa()
 
+const server = http.createServer(app.callback())
+
+app.use(shutdown(server, { logger: pino }))
 app.use(errorHandler)
 app.use(requestId())
 app.use(koaCompress())
@@ -43,4 +49,4 @@ app.use(koaHelmet())
 app.use(router.routes())
 app.use(router.allowedMethods())
 
-export default app
+export { app, server }
