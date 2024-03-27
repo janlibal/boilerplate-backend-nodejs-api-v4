@@ -40,15 +40,11 @@
         },
         "/api/v1/login": {
             "post": {
+                "description": "Logs in a  registered user",
+                "summary": "Logs user into the app",
+                "operationId": "loginUser",
                 "tags": [
                     "login"
-                ],
-                "summary": "Logs user into the app",
-                "description": "Logs in a  registered user",
-                "operationId": "loginUser",
-                "produces": [
-                    "application/json",
-                    "application/xml"
                 ],
                 "parameters": [
                     {
@@ -61,9 +57,13 @@
                         }
                     }
                 ],
+                "produces": [
+                    "application/json",
+                    "application/xml"
+                ],
                 "responses": {
                     "200": {
-                        "description": "successful operation",
+                        "description": "Successful operation",
                         "headers": {
                             "X-Expires-After": {
                                 "type": "string",
@@ -77,14 +77,20 @@
                             }
                         },
                         "schema": {
-                            "type": "string"
+                            "$ref": "#/definitions/Success"
                         }
                     },
                     "401":{
-                        "description": "Invalid email or password"
+                        "description": "Invalid email or password",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                          }
                     },
                     "400": {
-                        "description": "Invalid username/password supplied"
+                        "description": "Invalid body format",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                          }
                     }
                 }
                 
@@ -129,17 +135,20 @@
                             }
                         },
                         "schema": {
-                            "type": "string"
+                            "$ref": "#/definitions/Success"
                         }
                     },
-                    "401":{
-                        "description": "Invalid email or password"
-                    },
                     "400": {
-                        "description": "Invalid username/password supplied"
+                        "description": "Invalid body format",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                          }
                     },
                     "409":{
-                        "description": "User already registered"
+                        "description": "User already registered",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                          }
                     }
                 }
                 
@@ -193,10 +202,37 @@
         }
       }, 
     "definitions": {
-        "ApiResponse": {
+        "Success": {
             "type": "object",
+            "required": [
+                "email",
+                "token"
+              ],
             "properties": {
-                "code": {
+                "email": {
+                    "type": "string"
+                },
+                "token": {
+                    "type": "string",
+                    "format": "uuid"
+                }
+            }
+        },
+        "Error": {
+            "type": "object",
+            "required": [
+                "requestId",
+                "status",
+                "type",
+                "message",
+                "stack"
+              ],
+            "properties": {
+                "requestId": {
+                    "type": "string",
+                    "format": "uuid"
+                },
+                "status": {
                     "type": "integer",
                     "format": "int32"
                 },
@@ -204,6 +240,9 @@
                     "type": "string"
                 },
                 "message": {
+                    "type": "string"
+                },
+                "stack": {
                     "type": "string"
                 }
             }
